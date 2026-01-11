@@ -110,4 +110,109 @@
 
     <div class="day-block">
         <span class="day-meta">Jan 19 — Wellness</span>
-        <div
+        <div class="day-title">Botanical & Cultural Oasis</div>
+        <ul>
+            <li>Majorelle Garden & Yves Saint Laurent Museum.</li>
+            <li>Ben Youssef Madrasa & Le Jardin Secret.</li>
+            <li>Afternoon traditional Hammam experience.</li>
+        </ul>
+    </div>
+
+    <h2>Fes (Jan 23–24)</h2>
+    <div class="day-block">
+        <span class="day-meta">Jan 23 — Exploration</span>
+        <div class="day-title">The Intellectual Heart</div>
+        <ul>
+            <li>Entry via Bab Boujloud (Blue Gate).</li>
+            <li>Bou Inania Madrasa & Nejjarine Fountain.</li>
+            <li>Exterior of Al-Qarawiyyin & Chouara Tannery.</li>
+        </ul>
+    </div>
+
+    <div class="day-block">
+        <span class="day-meta">Jan 24 — Departure</span>
+        <div class="day-title">Panoramic Farewells</div>
+        <ul>
+            <li>View from Merenid Tombs & Royal Palace gates.</li>
+            <li>Mellah & Dar Batha Museum (optional).</li>
+            <li>8:35 PM: Flight Fes → London.</li>
+        </ul>
+    </div>
+</div>
+
+<div id="page-desert" class="page">
+    <span class="section-label">Sahara Expedition</span>
+    <h1>Desert Journey</h1>
+    <div class="image-frame">
+        <img src="https://images.unsplash.com/photo-1509023464722-18d996393ca8?auto=format&fit=crop&w=800" alt="Sahara">
+    </div>
+    <p>This three-day private transit from Marrakesh to Fes is a cinematic journey through the High Atlas Mountains. You will cross the Tizi n'Tichka pass to reach <strong>Ait Ben Haddou</strong>, a UNESCO-protected ksar that has stood for centuries as a gateway for desert caravans.</p>
+    <p>After exploring Ouarzazate, the route winds through the <strong>Dades Valley</strong>—known for its "Monkey Fingers" rock formations—and the 300-meter vertical walls of the Todgha Canyon. The highlight is the <strong>Erg Chebbi dunes in Merzouga</strong>, where you will embark on a sunset camel trek to reach a luxury desert camp. Under the clearest skies in Africa, you will enjoy Sahrawi music and an overnight stay in a private tented suite.</p>
+    <p>The journey concludes with a drive north through the Middle Atlas cedar forests, where you may spot Barbary Apes, and a stop in the alpine town of Ifrane before arriving in Fes.</p>
+</div>
+
+<div id="page-places" class="page">
+    <span class="section-label">Directory</span>
+    <h1>Master List</h1>
+    <div id="master-list-content"></div>
+</div>
+
+<div class="nav-bar">
+    <a href="javascript:void(0)" class="nav-link active" onclick="navTo('home')">Home</a>
+    <a href="javascript:void(0)" class="nav-link" onclick="navTo('itinerary')">Itinerary</a>
+    <a href="javascript:void(0)" class="nav-link" onclick="navTo('desert')">Desert</a>
+    <a href="javascript:void(0)" class="nav-link" onclick="navTo('places')">Places</a>
+</div>
+
+<div id="detail-view">
+    <button class="back-btn" onclick="closeDetail()">← Back to List</button>
+    <div id="detail-body"></div>
+</div>
+
+<script>
+    const placesData = [
+        { name: "Jemaa el-Fna", city: "Marrakesh", lat: "31.6258", lng: "-7.9891", desc: "The legendary square of Marrakesh. A UNESCO masterpiece where snake charmers, musicians, and food stalls create a nightly theater that has remained unchanged for centuries.", img: "https://images.unsplash.com/photo-1596403219460-70588663806a?auto=format&fit=crop&w=800" },
+        { name: "Bahia Palace", city: "Marrakesh", lat: "31.6218", lng: "-7.9817", desc: "A 19th-century palace built to be the greatest of its time. Its 160 rooms are adorned with cedar carvings, stucco, and zellij tilework.", img: "https://images.unsplash.com/photo-1597211684565-dca64d72bdfe?auto=format&fit=crop&w=800" },
+        { name: "Ben Youssef Madrasa", city: "Marrakesh", lat: "31.6318", lng: "-7.9861", desc: "Once the largest Islamic college in North Africa. Its courtyard is a masterpiece of symmetry and artisanal detail.", img: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=800" },
+        { name: "Majorelle Garden", city: "Marrakesh", lat: "31.6416", lng: "-8.0025", desc: "The cobalt-blue garden created by Jacques Majorelle and later restored by Yves Saint Laurent. A botanical sanctuary in the heart of the city.", img: "https://images.unsplash.com/photo-1605335123306-38d5e8966e60?auto=format&fit=crop&w=800" },
+        { name: "Chouara Tannery", city: "Fes", lat: "34.0661", lng: "-4.9712", desc: "The iconic leather tanneries of Fes. Watch from the terraces as artisans use natural dyes in stone vats, a process unchanged since the 11th century.", img: "https://images.unsplash.com/photo-1590483478923-a85976b9042b?auto=format&fit=crop&w=800" },
+        { name: "Bab Boujloud", city: "Fes", lat: "34.0617", lng: "-4.9829", desc: "The Blue Gate. The ornate main entrance to the Fes Medina, featuring blue tiles on the outside and green on the inside.", img: "https://images.unsplash.com/photo-1541819665-99238692797e?auto=format&fit=crop&w=800" },
+        { name: "Merenid Tombs", city: "Fes", lat: "34.0722", lng: "-4.9811", desc: "Ruined tombs from the 14th century that provide a panoramic vista over the sprawling Fes el-Bali medina.", img: "https://images.unsplash.com/photo-1596403219460-70588663806a?auto=format&fit=crop&w=800" }
+    ];
+
+    function navTo(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        document.getElementById('page-' + pageId).classList.add('active');
+        event.currentTarget.classList.add('active');
+        window.scrollTo(0,0);
+    }
+
+    function initMasterList() {
+        const list = document.getElementById('master-list-content');
+        placesData.forEach(place => {
+            const div = document.createElement('div');
+            div.className = 'place-card';
+            div.innerHTML = `<div><span>${place.name}</span></div><div class="city-tag">${place.city}</div>`;
+            div.onclick = () => openDetail(place);
+            list.appendChild(div);
+        });
+    }
+
+    function openDetail(place) {
+        const body = document.getElementById('detail-body');
+        body.innerHTML = `
+            <div class="image-frame"><img src="${place.img}"></div>
+            <span class="section-label">${place.city}</span>
+            <h1>${place.name}</h1>
+            <p>${place.desc}</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=${place.lat},${place.lng}" class="nav-button" target="_blank">Navigate in Google Maps</a>
+        `;
+        document.getElementById('detail-view').style.display = 'block';
+    }
+
+    function closeDetail() { document.getElementById('detail-view').style.display = 'none'; }
+    initMasterList();
+</script>
+
+</body>
